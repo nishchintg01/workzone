@@ -1,0 +1,74 @@
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('https://i.pinimg.com/originals/06/26/8b/06268b10ac8a5e6fb2d587c783f8e096.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1><%= @article.title %></h1>
+                    <h2 class="subheading"><%= @article.subtitle %></h2>
+                    <span class="meta">
+                        <%= t "index.content.posted_by" %>
+                        <a href="#!"><%= @article.user.email %></a>
+                        on 
+                        <%= @article.created_at %>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <!-- Notice -->
+                <% if notice %>
+                    <div class="alert alert-warning" role="alert"><%= notice %></div>
+                <% end %>
+                <!-- Notice Ends -->
+                <p>
+                    <%= @article.description%>
+                </p>
+                <% if user_signed_in? %>
+                <% if current_user.id == @article.user_id %>
+                    <%= link_to 'Edit Article', edit_article_path(@article), {:class => "btn-edit"} %>
+                    <%= link_to 'Delete', article_path(@article),data: {confirm: "Are you sure you want to delete this post?"} ,:method => "delete", :class => "btn-edit" %><br>
+                <% end %> 
+                <% end %>
+
+
+                <% if user_signed_in? %>
+                <!-- Comment Form -->
+                <h2 class="mt-5">Write a Comment</h2>
+                <div><%= render 'comments/form'%></div>
+                <!--Comment Form Ends-->
+                <% else %>
+                <h2 class="mt-5">Write a Comment</h2>
+                <h4 class="mt-5"><a href="<%= new_user_session_path %>">Login</a> to leave a comment</h4>
+                <% end %>
+
+
+                <!--User Comments Section -->
+                <% if @article.comments.size == 0 %>
+                    <h2 class="mt-5">
+                    Comments
+                    </h2>
+                    <div class="alert-warning">
+                    Comments are Not Available for this post
+                    </div>
+                <% else %>
+                <h2 class="mt-5">
+                    Comments
+                </h2>
+                    <!--User Comment Partial -->
+                    <%= render 'comments/comment' %>
+                    <!--User Comment Partial Ends -->
+
+                <% end %> 
+                <!--User Comments Section Ends-->       
+            </div>
+        </div>
+    </div>
+</article>
+

@@ -1,0 +1,47 @@
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('https://i.pinimg.com/originals/06/26/8b/06268b10ac8a5e6fb2d587c783f8e096.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>Log In</h1>
+                    <h2 class="subheading">Enter Your Details Here</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="field">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-fields" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :password %><br />
+                  <%= f.password_field :password, autocomplete: "current-password", :class => "form-fields" %>
+                </div>
+
+                <% if devise_mapping.rememberable? %>
+                  <div class="field">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                  </div>
+                <% end %>
+
+                <div class="actions mt-4 mb-4">
+                  <%= f.submit "Log in" ,:id => "form-btn" %>
+                </div>
+
+                <%= link_to "Forgot Password?", new_user_password_path %>
+              <% end %>
+      </div>
+    </div>
+  </div>
+</article>
+

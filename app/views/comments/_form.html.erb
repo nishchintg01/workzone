@@ -1,0 +1,13 @@
+<%= form_with(model: [ @article, Comment.new ], local: true) do |form|%>
+<div class="row mt-4">
+    <div class="col-2">
+        <%= form.label "Comment" %>
+    </div>
+    <div class="col-10">
+        <%= form.text_field :content, :class => "comment-form"%>
+    </div>
+</div>
+<div class="mb-5">
+    <%= form.submit "Add Comment", :class => "comment-btn" %>
+</div>
+<% end %>

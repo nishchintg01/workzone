@@ -1,0 +1,18 @@
+<% @article.comments.reverse.each do |comment| %>
+    <div class="row">
+        <div class="col-2">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK6uAwJ2JNN2hrgWi18n2nGk5iJ9yF7N7ghg&usqp=CAU" width="80" height="80">
+        </div>
+        <div class="col-10">
+            <%= comment.content %>
+            <p style="font-size:15px;">
+                Posted By : <%= comment.user.email %>
+            </p>
+            <% if user_signed_in? %>
+            <% if comment.user_id == current_user.id %>
+                <%= link_to 'Delete',{:controller => "comments", :action => "destroy", :article_id => @article.id, :id => comment }, :method => :delete, data: { confirm: 'Are you sure?' }, :class => "edit-comment-btn" %>
+            <% end %>
+            <% end %>
+        </div>
+    </div>
+<% end %>
