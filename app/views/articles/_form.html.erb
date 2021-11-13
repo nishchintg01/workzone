@@ -1,0 +1,26 @@
+<%= form_with model: @article, local: true do |form| %>
+    <% if @article.errors.any? %>
+        <% @article.errors.full_messages.each do |error| %>
+            <div class="alert alert-warning" role="alert">
+            <%= error %>
+            </div>
+        <% end %>
+    <% end %>
+    <p>
+        <%= form.label "Title" %><br>
+        <%= form.text_field :title, :class => "form-fields"%>
+    </p>
+    <p>
+        <%= form.label "Sub Title" %><br>
+        <%= form.text_field :subtitle, :class => "form-fields" %>
+    </p>
+    <p>
+        <%= form.label "Description" %><br>
+        <%= form.text_field :description, :class => "form-fields" %>
+    </p>
+    <p>
+        <%= form.label "Mins Read" %><br>
+        <%= form.number_field :read, :class => "form-fields" %>
+    </p>
+    <%= form.submit "Save Details", :id => "form-btn" %>  
+<% end %>

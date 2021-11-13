@@ -17,7 +17,7 @@
                 <% if notice %>
                 <div class="alert alert-warning" role="alert"><%= notice %></div>
                 <% end %>
-                <% @articles.each do |article|%>
+                <% @data_list.each do |article|%>
                     <!-- Post preview-->
                     <div class="post-preview">
                         <a href="<%= article_path(article) %>">
@@ -34,7 +34,7 @@
                     <hr class="my-4" />
                 <% end %>
                 <div class="apple_pagination">
-                    <%= will_paginate @articles %>
+                    <%= will_paginate @data_list %>
                 </div>
                 </div>
             </div>

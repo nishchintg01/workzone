@@ -28,49 +28,22 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="<%= root_path %>">Home</a></li>                        
-                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="">Login/Signup</a></li>
-                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href=""></a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="<%= root_path %>">Home</a></li>
+                        <% if user_signed_in? %>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="<%= new_article_path %>">Add Article</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="<%= myarticles_path %>">My Articles</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="<%= edit_user_registration_path %>">Edit Profile</a></li> 
+                            <li class="nav-item"><%= link_to "Logout", destroy_user_session_path,:method => :delete ,:class => "nav-link px-lg-3 py-3 py-lg-4" %></li>
+                        <% else %>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="<%= new_user_session_path %>">SignIn</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="<%= new_user_registration_path %>">SignUp</a></li>
+                        <% end %>                        
                     </ul>
                 </div>
             </div>
         </nav>
-              <!-- Page Header-->
-        <header class="masthead" style="background-image: url('https://i.pinimg.com/originals/06/26/8b/06268b10ac8a5e6fb2d587c783f8e096.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1>Welcome to WorkZone</h1>
-                            <span class="subheading"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                <% if notice %>
-                <div class="alert alert-warning" role="alert"><%= notice %></div>
-                <% end %>
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="#">
-                            <h2 class="post-title">sdsd</h2>
-                            <h3 class="post-subtitle">sdfsd</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted By
-                            <a href="sd">User 1</a>
-                            on 10 November 2021
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                </div>
-            </div>
-        </div>
+
+       <%= yield %>
         <!-- Footer-->
         <footer class="border-top" style="margin-top:2%;">
             <div class="container px-4 px-lg-5">
@@ -102,7 +75,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="small text-center text-muted fst-italic"><%= t "index.footer.copyright" %> &copy; Blog 2021</div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; WorkZone 2021</div>
                     </div>
                 </div>
             </div>
